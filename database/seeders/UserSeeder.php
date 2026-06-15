@@ -1,0 +1,26 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\User;
+use App\UserRole;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+{
+    User::create([
+        'name' => 'Administrador',
+        'email' => 'admin@movieapi.com',
+        'password' => 'password',
+        'role' => UserRole::ADMIN,
+    ]);
+
+    User::factory(50)->create();
+}
+}

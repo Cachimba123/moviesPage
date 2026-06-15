@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Movie;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Movie>
@@ -16,9 +17,31 @@ class MovieFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {
-        return [
-            //
-        ];
-    }
+{
+    $title = fake()->unique()->sentence(3);
+
+    return [
+
+        'title' => $title,
+
+        'slug' => Str::slug($title),
+
+        'description' => fake()->paragraphs(
+            5,
+            true
+        ),
+
+        'release_year' => fake()->numberBetween(
+            1980,
+            2026
+        ),
+
+        'duration' => fake()->numberBetween(
+            80,
+            240
+        ),
+
+        'rating_average' => 0
+    ];
+}
 }
